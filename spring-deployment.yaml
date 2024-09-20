@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot
+  template:
+    metadata:
+      labels:
+        app: springboot
+    spec:
+      containers:
+      - name: springboot
+        image: jingnin/spring-image
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: "/usr/share/springboot"
+          name: springboot-storage
+      volumes:
+      - name: springboot-storage
+        persistentVolumeClaim:
+          claimName: springboot-pvc
