@@ -17,10 +17,3 @@ spec:
         image: jingnin/spring-image
         ports:
         - containerPort: 8080
-        volumeMounts:
-        - mountPath: "/usr/share/springboot"
-          name: springboot-storage
-      volumes:
-      - name: springboot-storage
-        persistentVolumeClaim:
-          claimName: springboot-pvc
